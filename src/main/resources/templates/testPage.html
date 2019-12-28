@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}"/>
+    <script>
+        $(function () {
+            $("#a_testJquery").click(function () {
+               // alert('testJqueryAjax');
+               var obj = {};
+               obj.aa='aa';
+               obj.bb=1;
+               $.ajax({
+                   type:'POST',
+                   url:'/jQueryAjaxTest',
+                   data:JSON.stringify(obj),
+                   dataType:'json',
+                   contentType:'application/json; charset=utf-8',
+                   success:function (result) {
+                        console.info(result);
+                   }
+               });
+            });
+        })
+    </script>
+</head>
+<body>
+    <a id="a_testJquery" href="javascript:void(0)">测试jquery</a>
+    <div class="container">
+        <div class="row">
+            <p th:text="${msg}" class="col-4"></p>
+            <p th:text="${msg}" class="col-4"></p>
+            <p th:text="${msg}" class="col-4"></p>
+        </div>
+    </div>
+</body>
+</html>
