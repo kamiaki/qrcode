@@ -24,18 +24,31 @@
                    }
                });
             });
+
+            //点击生成
+            $("#a_msg").click(createQRCode);
+
+            //生成方法
+            function createQRCode() {
+                var msgStr = $('#input_msg').val();
+                var cQRUrl = '/createQrCode';
+                var url = cQRUrl + '?' + 'msg=' + msgStr;
+                $('#img_QR').attr('src',url);
+            }
         })
     </script>
 </head>
 <body>
-    <a id="a_testJquery" href="javascript:void(0)">测试jquery</a>
-    <div class="container">
+    <div class="container" hidden>
+        <a id="a_testJquery" href="javascript:void(0)">测试jquery</a>
         <div class="row">
-            <p th:text="${msg}" class="col-4"></p>
-            <p th:text="${msg}" class="col-4"></p>
             <p th:text="${msg}" class="col-4"></p>
         </div>
     </div>
-    <img src="/createQrCode" alt="">
+    <div class="container mt-3">
+        <a id="a_msg" href="javascript:void(0)">生成二维码</a>
+        <input id="input_msg" type="text">
+        <img id="img_QR" src="/createQrCode" alt="">
+    </div>
 </body>
 </html>
